@@ -1,12 +1,17 @@
 # 王文斌 — AI 应用工程师
 
-> 多 Agent 编排 | LLM 应用开发 | MCP 协议 | 跨平台桥接 | 桌面自动化
+> 多 Agent 编排 · MCP 协议 · 跨平台通信桥接 · 桌面自动化 · 本地 RAG
+
+**电话：** 19713068102  
+**邮箱：** 16684299101@163.com  
+**GitHub：** https://github.com/deer-cc  
+**所在地：** 杭州  
 
 ---
 
 ## 个人简介
 
-AI 应用开发者，专注于 LLM Agent 系统的架构设计与工程落地。具备从模型接入、Agent 编排、MCP 工具链集成到服务治理的完整闭环能力。独立构建了一套多 Agent 个人 AI 助手生态，涵盖内容创作、图像生成、投资分析、视频制作、桌面控制、知识检索等多个垂直领域。
+AI 应用工程师，2026届计算机应用技术专业应届毕业生。具备从模型接入、Agent编排、MCP工具链集成到服务治理的完整闭环能力。独立设计并构建了一套多 Agent LLM 应用系统，涵盖跨平台通信桥接、桌面自动化、本地 RAG 检索、高可用服务治理等模块，具备将 AI 技术落地到实际业务场景的工程能力。
 
 ---
 
@@ -14,13 +19,13 @@ AI 应用开发者，专注于 LLM Agent 系统的架构设计与工程落地。
 
 | 类别 | 技术 |
 |:-----|:-----|
-| **语言** | Python, JavaScript/Node.js, TypeScript, PowerShell |
-| **LLM** | Claude (Anthropic), DeepSeek, GPT |
-| **Agent 框架** | Claude Code, MCP (Model Context Protocol) |
-| **通信桥接** | WebSocket, HTTP/REST, cc-connect |
-| **桌面自动化** | pyautogui, pillow, pywin32, Playwright |
-| **数据库/存储** | JSON, Obsidian (Markdown), 本地文件 |
-| **部署/运维** | 守护进程, 健康检查, 自动重启, Windows 计划任务 |
+| **语言** | Python, JavaScript/Node.js, TypeScript, Go, PowerShell |
+| **LLM 应用** | Claude Code, Claude API, DeepSeek, GPT |
+| **Agent 框架** | Claude Code Skills, MCP (Model Context Protocol) |
+| **通信** | WebSocket, HTTP/REST, JSON-RPC, cron 调度 |
+| **自动化** | pyautogui, pillow, pywin32, Playwright, psutil |
+| **数据库/存储** | SQLite, JSON, Obsidian (Markdown), 本地文件系统 |
+| **运维** | 守护进程, 健康检查, 自动重启, Windows 计划任务, systemd |
 | **协议** | MCP (Tools/Resources/Prompts/Sampling/Roots) |
 
 ---
@@ -67,11 +72,10 @@ AI 应用开发者，专注于 LLM Agent 系统的架构设计与工程落地。
 用 Python 原生调用 Win32 API 替代 PowerShell 管道方案，重构桌面控制服务。
 
 - 实现了 10 个 HTTP API 端点：截图/点击/双击/输入/按键/拖拽/滚动/窗口管理
-- 去除了 PowerShell 中间层，操作延迟从 ~500ms 降至 ~50ms（10 倍提升）
+- 去除了 PowerShell 中间层，操作延迟从 ~500ms 降至 ~50ms（**10 倍提升**）
 - 原生 UTF-8 中文输入支持（解决了 SendKeys GBK 乱码问题）
 - 三级安全边界 + 紧急停止机制（鼠标移到左上角触发 FAILSAFE）
 - 集成到 guardian 守护进程，开机自启 + 异常自动重启
-- 桌面控制服务 (:8990) 与 leaf_api (:8899) 协同工作
 
 **成果：** 10 个 API 全部通过端到端测试，守护进程稳定运行。
 
@@ -100,8 +104,8 @@ AI 应用开发者，专注于 LLM Agent 系统的架构设计与工程落地。
 设计了三层服务治理架构，覆盖从监控、告警到自愈的完整链路。
 
 - **守护进程层 (guardian)**：每 60 秒巡检所有服务，连续 3 次失败触发自动重启
-- **消息总线层 (dispatcher :3800)**：实现了消息去重（5min 窗口）、告警节流、指数退避重试（5s/15s/30s）、本地队列持久化（重启补发）
-- **看门狗层 (watchdog)**：会话文件大小检测 + cc-connect 进程存活检查 + MCP 服务健康诊断
+- **消息总线层 (dispatcher :3800)**：消息去重（5min 窗口）、告警节流、指数退避重试（5s/15s/30s）、本地队列持久化（重启补发）
+- **看门狗层 (watchdog)**：会话文件大小检测 + 进程存活检查 + MCP 服务健康诊断
 - 配置驱动：所有服务通过 JSON 配置管理，支持热更新
 - 已纳入开机自启流程：cc-connect → leaf_api → desktop-bridge → dispatcher → guardian
 
@@ -109,17 +113,61 @@ AI 应用开发者，专注于 LLM Agent 系统的架构设计与工程落地。
 
 ---
 
-## 教育背景
+### 6. 闲鱼自动客服系统
 
-[待补充]
+**技术栈：** Node.js · WebSocket · LLM 意图识别
+
+独立开发的闲鱼消息自动回复系统，支持多轮对话和意图识别。
+
+- 通过 WebSocket 监听闲鱼消息，实时响应买家咨询
+- 结合 LLM 实现智能意图识别，自动分类常见售前问题
+- 支持图片、文字、链接等多类型消息自动回复
+- 已稳定运行，日均处理消息量稳定
+
+**成果：** 释放人工客服时间，提升响应速度至秒级。
 
 ---
 
-## 联系方式
+## 实习经历
 
-- GitHub: https://github.com/deer-cc
-- 邮箱: [待补充]
-- 所在地: 杭州
+### 海康威视 — 数据标注（2026.03 - 2026.05）
+
+- 负责 AI 训练数据的标注与质量校验，累计处理数据 5000+ 条
+- 制定标注规范文档，统一团队标注标准，提升标注一致性
+- 在标注过程中深入理解计算机视觉模型训练流程，为后续 LLM Agent 开发奠定数据思维基础
+
+### 房地产销售（2025.07 - 2025.08）
+
+- 两个月全职销售经历，锻炼了客户沟通、需求挖掘和抗压能力
+- 这段经历让我理解"将技术能力转化为用户价值"的重要性，驱动我转向 AI 工程方向
+
+---
+
+## 教育背景
+
+**信阳职业技术学院** · 计算机应用技术 · 大专  
+2023.09 - 2026.06（预计）
+
+主修课程：计算机网络、智能设备原理、信息技术基础、程序设计基础  
+成绩良好，具备扎实的理工科基础，能快速理解产品逻辑与技术架构
+
+---
+
+## GitHub 作品集
+
+- **AI Agent 生态系统**：https://github.com/deer-cc/ai-agent-ecosystem
+  - 完整架构文档、协议设计、5个核心项目详细拆解
+  - 可直接作为面试展示材料
+
+---
+
+## 自我评价
+
+- 具备独立从 0 到 1 构建 AI 应用系统的能力，不是只会调 API
+- 对 MCP 协议、多 Agent 编排有深入实践，能讲清楚每一层设计决策
+- 有工程落地意识：考虑高可用、自愈、监控告警，不只是 demo
+- 学习能力强：两周内从 MCP 概念到独立搭建多 Agent 系统并跑通全链路
+- 沟通表达清晰：能用非技术语言向非技术人员解释技术方案
 
 ---
 
