@@ -109,6 +109,7 @@ Python · Go · Node.js · TypeScript · MCP · WebSocket · Playwright · FastA
 | [ARCHITECTURE/multi-agent.md](ARCHITECTURE/multi-agent.md) | 多 Agent 编排设计 |
 | [PROTOCOLS/mcp.md](PROTOCOLS/mcp.md) | MCP 协议集成实践 |
 | [PROTOCOLS/leaf-tian-protocol.md](PROTOCOLS/leaf-tian-protocol.md) | 叶子↔小天通信协议 |
+| [ARCHITECTURE/rag-engine.md](ARCHITECTURE/rag-engine.md) | RAG引擎架构说明 |
 | [PROJECTS/01-multi-agent-system.md](PROJECTS/01-multi-agent-system.md) | 项目1：多Agent系统 |
 | [PROJECTS/02-cc-connect-bridge.md](PROJECTS/02-cc-connect-bridge.md) | 项目2：跨平台桥接 |
 | [PROJECTS/03-desktop-automation.md](PROJECTS/03-desktop-automation.md) | 项目3：桌面自动化v2 |
