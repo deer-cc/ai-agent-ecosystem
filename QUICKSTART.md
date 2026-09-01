@@ -38,6 +38,7 @@ git push origin main
 - 项目3 桌面自动化：性能优化（500ms→50ms）、Win32 API
 - 项目4 RAG：倒排索引实现、离线检索优势
 - 项目5 服务治理：三层架构、dispatcher 去重/节流/重试算法
+- 项目6 RAG引擎：TF-IDF混合检索、中文分词、持久化热加载
 
 ---
 

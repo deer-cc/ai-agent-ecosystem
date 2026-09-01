@@ -30,6 +30,7 @@ Python · Go · Node.js · TypeScript · MCP · WebSocket · Playwright · FastA
 | 4 | **本地 RAG 检索** | Python · 倒排索引 | 完全离线，74个知识节点 |
 | 5 | **服务治理** | Python · 指数退避 | 三层架构，5服务全自动守护 |
 | 6 | **闲鱼自动客服** | Node.js · LLM | 多轮对话，秒级响应 |
+| 7 | **生产级 RAG 引擎 v2** | Python · ChromaDB · TF-IDF | 混合检索，592块/18755词 |
 
 ---
 
@@ -113,6 +114,7 @@ Python · Go · Node.js · TypeScript · MCP · WebSocket · Playwright · FastA
 | [PROJECTS/03-desktop-automation.md](PROJECTS/03-desktop-automation.md) | 项目3：桌面自动化v2 |
 | [PROJECTS/04-knowledge-base.md](PROJECTS/04-knowledge-base.md) | 项目4：本地RAG检索 |
 | [PROJECTS/05-service-governance.md](PROJECTS/05-service-governance.md) | 项目5：服务治理 |
+| [PROJECTS/06-rag-engine.md](PROJECTS/06-rag-engine.md) | 项目6：生产级RAG引擎 |
 | [RESUME.md](RESUME.md) | 完整简历 |
 
 ---
