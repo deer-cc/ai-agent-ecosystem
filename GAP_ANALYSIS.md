@@ -50,9 +50,10 @@
 ## 三、推荐优先级
 
 **短期（这周，2-3小时能搞定）：**
-1. Docker Compose一键启动RAG服务
-2. 写8个pytest单元测试
-3. GitHub Actions CI自动跑测试
+1. ✅ Docker Compose一键启动RAG服务
+2. ✅ 写pytest单元测试
+3. ✅ GitHub Actions CI自动跑测试
+4. ✅ 客服引擎v1.0 — AI对话系统（意图识别+多轮对话+RAG融合）
 
 **中期（下周，1-2天）：**
 4. LangGraph多步工作流（替代叶子JSON协议）

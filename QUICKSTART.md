@@ -8,7 +8,7 @@ github-portfolio/
 ├── RESUME.md                    ← 完整简历（可直接复制粘贴）
 ├── ARCHITECTURE/                ← 架构文档
 ├── PROTOCOLS/                   ← 协议设计
-├── PROJECTS/                    ← 5个核心项目详解
+├── PROJECTS/                    ← 7个核心项目详解
 └── demos/                       ← 演示脚本和截图
 ```
 
@@ -39,7 +39,8 @@ git push origin main
 - 项目4 RAG：倒排索引实现、离线检索优势
 - 项目5 服务治理：三层架构、dispatcher 去重/节流/重试算法
 - 项目6 RAG引擎：TF-IDF混合检索、中文分词、持久化热加载
+- 项目7 客服引擎：LLM意图识别+多轮对话+RAG知识库融合+工程规范
 
 ---
 
-*最后更新：2026-08-31*
+*最后更新：2026-09-08*
