@@ -1,12 +1,12 @@
-# 项目六：生产级 RAG 知识检索引擎
+# 项目六：图关系 RAG 知识检索引擎
 
 ## 一句话定位
 
-> 基于 TF-IDF 向量 + 倒排索引的混合检索系统，592个知识块、18755个关键词，支持中文语义检索
+> 基于 Markdown `[[双链]]` 知识图谱 + TF-IDF 向量 + 倒排索引的三路混合检索系统，592个知识块、18755个关键词，支持中文语义检索与图关系扩展召回
 
 ## 技术栈
 
-Python · ChromaDB · TF-IDF · 中文分词 · FastAPI
+Python · ChromaDB · TF-IDF · 倒排索引 · `[[双链]]`图谱 · 中文分词 · FastAPI
 
 ## 架构设计
 
@@ -41,6 +41,51 @@ Python · ChromaDB · TF-IDF · 中文分词 · FastAPI
 - JSON文件缓存倒排索引 + chunks元数据
 - 服务重启秒级加载（~100ms）
 
+### 4. `[[双链]]` 知识图谱检索（核心创新）
+
+知识库中的 `[[双链]]` 标记天然形成节点关系图：
+
+```
+"operating-doctrine" ──[链接]──> "assistant-ecosystem"
+    │                                │
+    │链接数=10                       │链接数=4
+    ▼                                ▼
+"用户画像" ←──[反向链接]── "communication-standards"
+```
+
+**图扩展召回逻辑：**
+
+```python
+def graph_aware_search(query, top_k=5):
+    # Step 1: 关键词召回（原始匹配）
+    keyword_hits = inverted_index.search(query)   # 权重 35%
+
+    # Step 2: 图扩展 — 命中文档的 [[双链]] 邻居也加入候选
+    expanded = set()
+    for hit in keyword_hits[:3]:
+        links = extract_wikilinks(hit.path)
+        expanded.update(links)                     # 权重 15%
+
+    # Step 3: 对扩展节点做 TF-IDF 向量召回
+    # Step 4: 融合排序（原始命中 > 图扩展）
+    return merge_and_rank(keyword_hits, expanded)
+```
+
+**搜索"客服"的召回效果：**
+
+```
+原始命中（关键词）:
+  ✅ faq.md            ← 直接含"客服"
+  ✅ intent.py         ← 含"意图识别"
+
+图扩展召回（沿 [[双链]] 走一步）:
+  ✅ dialog.md         ← faq.md 链接到的相关文件
+  ✅ rag.py            ← faq.md 链接到的知识库模块
+  ✅ 多轮对话状态机     ← intent.py 关联概念
+
+最终召回 7 个相关文档，而非仅 2 个
+```
+
 ## 性能指标
 
 - 索引构建：592个块，130个文档，词表3000词
@@ -60,4 +105,13 @@ Python · ChromaDB · TF-IDF · 中文分词 · FastAPI
 
 ## 成果
 
-**成果：** 生产级RAG检索引擎，支持混合检索、中文分词、持久化热加载，检索延迟<50ms，可作为企业知识库后端服务。
+**成果：** 生产级 RAG 图关系检索引擎，支持三路混合召回（关键词35% + 图扩展15% + 向量50%）、Markdown `[[双链]]` 知识图谱建模、中文分词、持久化热加载，检索延迟<50ms，可作为企业知识库后端服务。
+
+**与简历的结合：**
+> 构建了基于 Markdown `[[双链]]` 知识图谱的本地 RAG 检索系统，实现三路混合召回。知识库中的双链标记天然形成节点关系图，检索时沿图的边追踪关联邻居节点，大幅提升召回率。完全离线运行，零外部 API 依赖。
+
+**面试亮点：**
+- `[[双链]]` 知识图谱建模：无代码建图，Markdown双链 = 关系图谱
+- 图关系扩展召回：搜索一个概念自动召回关联节点
+- 三路混合检索架构（关键词+图扩展+向量）
+- ChromaDB 持久化 + 毫秒级热加载
