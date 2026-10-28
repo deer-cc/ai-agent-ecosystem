@@ -1,5 +1,7 @@
 # 项目七：客服引擎 v1.0 — AI 对话系统
 
+> ⚠️ **本文档是 2026-09 的设计记录，最新状态以 [cckefu 仓库](https://github.com/deer-cc/cckefu) 的 README 为准。**
+>
 > 作品集项目：展示 LLM 意图识别 + 多轮对话 + RAG 知识库融合 + 工程规范
 
 ## 一句话定位
@@ -18,7 +20,7 @@ Python · FastAPI · Pydantic · httpx · 倒排索引 · TF-IDF · pytest · Do
 | 多轮对话 | Session 级状态机 | 历史窗口管理，保留最近 N 轮 |
 | 知识库检索 | 倒排索引 + TF-IDF | 零外部依赖，完全离线运行 |
 | 回复策略 | 按意图路由模板 | 售前/售后/投诉分流处理 |
-| 工程规范 | pytest + Docker + CI | 18个测试用例全部通过 |
+| 工程规范 | pytest + Docker + CI | 68 个测试全部通过（含 2 个 HTTP 集成测试） |
 
 ## 架构
 
@@ -123,11 +125,16 @@ class DialogManager:
 ### 测试覆盖
 
 ```
-tests/test_intent.py  — 意图识别（7个用例）
-tests/test_dialog.py  — 对话状态机（6个用例）
-tests/test_rag.py     — 知识库检索（5个用例）
+tests/test_confidence.py     — 置信度校准（19 个用例）
+tests/test_query_rewriter.py — 查询改写（14 个用例）
+tests/test_request_log.py    — 请求日志（11 个用例）
+tests/test_dialog.py         — 对话状态机（7 个用例）
+tests/test_intent.py         — 意图识别（6 个用例）
+tests/test_rag.py            — 知识库检索（6 个用例）
+tests/test_config.py         — 配置校验（3 个用例）
+tests/test_http.py           — HTTP 集成（2 个用例）
 ────────────────────────────────
-总计：18 个测试用例，全部通过
+总计：68 个测试用例，全部通过
 ```
 
 ### CI/CD
