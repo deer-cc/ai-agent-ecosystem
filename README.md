@@ -1,7 +1,7 @@
-# 王文斌 · 项目文档集
+﻿# 王文斌 · 项目文档集
 
 > 这里放的是项目**过程文档**：架构思路、排障记录、评估方法。
-> **能跑的代码在 [cckefu](https://github.com/deer-cc/cckefu)。**
+> **能跑的代码在 [cc-engine](https://github.com/deer-cc/cc-engine)。**
 >
 > 求职方向：AI 应用交付工程师（FDE）/ 大模型平台实施 / AI 应用开发 / 技术助理
 > 📧 16684299101@163.com
@@ -12,7 +12,7 @@
 
 | 项目 | 仓库 | 说明 |
 |:--|:--|:--|
-| 智能客服引擎 | **[cckefu](https://github.com/deer-cc/cckefu)** | Python · FastAPI · 意图识别 · RAG 检索 · 多轮对话<br>68 个测试全绿 / Docker / GitHub Actions / 内嵌演示页 |
+| 智能客服引擎 | **[cc-engine](https://github.com/deer-cc/cc-engine)** | Python · FastAPI · 意图识别 · RAG 检索 · 多轮对话<br>68 个测试全绿 / Docker / GitHub Actions / 内嵌演示页 |
 
 ---
 
@@ -22,7 +22,7 @@
 
 | 文档 | 内容 | 状态 |
 |:--|:--|:--|
-| `PROJECTS/07-customer-service-engine.md` | 智能客服引擎的设计与排障记录 | ✅ 代码见 cckefu |
+| `PROJECTS/07-customer-service-engine.md` | 智能客服引擎的设计与排障记录 | ✅ 代码见 cc-engine |
 | `PROJECTS/06-rag-engine.md`<br>`PROJECTS/RAG知识检索系统.md` | 本地 RAG 检索引擎：TF-IDF + 图扩展 + 向量三路召回，592 块 | ✅ 自用 |
 | `PROJECTS/06-phone-bridge.md` | 手机 ↔ 终端消息桥接 | ✅ 自用 |
 | `PROJECTS/02-cc-connect-bridge.md` | 消息桥接的接入与配置 | ✅ 使用第三方 Go 工具 |
